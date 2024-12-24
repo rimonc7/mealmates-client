@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { FaGoogle, FaFacebook, FaGithub } from "react-icons/fa";
+import { FaGoogle} from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const { loginWithEmail, loginWithGoogle, errorMessage, setErrorMessage } = useContext(AuthContext);
@@ -9,6 +9,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || '/';
+    console.log(from)
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -86,11 +87,18 @@ const Login = () => {
                             <FaGoogle /> Continue with Google
                         </button>
                     </div>
-                    {errorMessage && (
-                        <div className="mt-4 text-center">
-                            <p className="text-red-500">{errorMessage}</p>
+                    <div className="form-control mt-4">
+                            <p className=" my-4 text-sm text-center">
+                                Don't have an Account?{" "}
+                                 <Link to={'/register'} className="text-blue-500 link link-hover">Register Here</Link>
+                            </p>
+                            {errorMessage && (
+                                <div className="mt-4 text-center">
+                                    <p className="text-red-500">{errorMessage}</p>
+                                </div>
+                            )}
                         </div>
-                    )}
+
                 </div>
             </div>
         </div>

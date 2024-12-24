@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
 
@@ -77,9 +77,9 @@ const Register = () => {
                             <button className="btn btn-primary">Register Now</button>
                         </div>
                         <div className="form-control mt-4">
-                            <p className="text-sm text-center">
-                                Already have an account?{' '}
-                                <a href="/login" className="text-blue-500 link link-hover">Log in here</a>
+                            <p className="my-4 text-sm text-center">
+                                Already have an account?{" "}
+                                <Link to={'/login'} className="text-blue-500 link link-hover">Log in here</Link>
                             </p>
                             {errorMessage && (
                                 <div className="mt-4 text-center">
