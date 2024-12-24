@@ -9,7 +9,7 @@ const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || '/';
-    
+
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -84,16 +84,6 @@ const Login = () => {
                             className="btn btn-outline btn-secondary flex items-center gap-2 mb-2"
                         >
                             <FaGoogle /> Continue with Google
-                        </button>
-                        <button
-                            className="btn btn-outline btn-secondary flex items-center gap-2 mb-2"
-                        >
-                            <FaFacebook /> Continue with Facebook
-                        </button>
-                        <button
-                            className="btn btn-outline btn-secondary flex items-center gap-2"
-                        >
-                            <FaGithub /> Continue with GitHub
                         </button>
                     </div>
                     {errorMessage && (
