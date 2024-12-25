@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const AddFood = () => {
     const { user } = useContext(AuthContext);
@@ -8,17 +9,31 @@ const AddFood = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const foodData = Object.fromEntries(formData.entries());
-        fetch('http://localhost:5000/foods',{
-            method:'POST',
-            headers:{
-                'content-type':'application/json'
+        fetch('http://localhost:5000/foods', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
             },
             body: JSON.stringify(foodData)
         })
-        .then(res=>res.json())
-        .then(data=>{
-            console.log(data)
-        })
+            .then(res => res.json())
+            .then(data => {
+                Swal.fire({
+                    title: "Food Data Added!",
+                    icon: "success",
+                    draggable: true
+                });
+                e.target.reset();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: "Error!",
+                    text: "There was an error adding the food data.",
+                    icon: "error",
+                    draggable: true
+                });
+            });
     };
 
 
