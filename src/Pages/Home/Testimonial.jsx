@@ -28,23 +28,29 @@ const Testimonial = () => {
     };
 
     return (
-        <div className="bg-base-100 py-12 px-6">
-            <div className="max-w-2xl mx-auto text-center">
+        <div
+            className="relative bg-cover bg-center py-20 px-6 text-white"
+            style={{
+                backgroundImage: "url('https://salumipasini.com/wp-content/uploads/Vino-Marzemino-Ca-Lustra-WINE13-mood2-2.jpg')",
+            }}
+        >
+            <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+            <div className="relative max-w-2xl mx-auto text-center z-10">
                 <h2 className="text-3xl font-bold mb-6">Testimonials</h2>
                 <FaQuoteLeft className="text-4xl text-accent mx-auto mb-4" />
-                <p className="text-lg text-gray-600 italic mb-6">
+                <p className="text-lg italic mb-6">
                     {testimonials[currentIndex].text}
                 </p>
                 <h3 className="text-xl font-semibold">{testimonials[currentIndex].name}</h3>
                 <div className="flex justify-center gap-4 mt-6">
                     <button
-                        className="btn btn-circle btn-outline"
+                        className="btn btn-circle btn-outline text-white font-bold"
                         onClick={handlePrev}
                     >
                         <FaArrowLeft />
                     </button>
                     <button
-                        className="btn btn-circle btn-outline"
+                        className="btn btn-circle btn-outline text-white font-bold"
                         onClick={handleNext}
                     >
                         <FaArrowRight />
