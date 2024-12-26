@@ -10,6 +10,7 @@ const Nav = () => {
             <li> <NavLink to='/' >Home</NavLink></li>
             <li> <NavLink to='/availableFoods' >Available Foods</NavLink></li>
             <li> <NavLink to='/myFood' >My Food</NavLink></li>
+            <li> <NavLink to='/foodRequest' >Food Pickup</NavLink></li>
             <li> <NavLink to='/addFood' >Add Food</NavLink></li>
         </>
 
