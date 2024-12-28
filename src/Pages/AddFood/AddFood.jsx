@@ -26,7 +26,6 @@ const AddFood = () => {
                 e.target.reset();
             })
             .catch(error => {
-                console.error('Error:', error);
                 Swal.fire({
                     title: "Error!",
                     text: "There was an error adding the food data.",
@@ -38,7 +37,7 @@ const AddFood = () => {
 
 
     return (
-        <div className="hero bg-base-200 min-h-screen flex flex-col items-center">
+        <div className="hero min-h-screen flex flex-col items-center">
             <h2 className="text-3xl my-4 font-bold">Add Food</h2>
             <div className="hero-content w-full flex-col lg:flex-row-reverse">
                 <div className="card bg-base-100 w-full max-w-4xl shadow-2xl">

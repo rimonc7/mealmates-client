@@ -39,10 +39,7 @@ const MyFood = () => {
                 Swal.fire("Changes are not saved", "", "info");
             }
         });
-
-
     };
-
 
     useEffect(() => {
         if (email) {
@@ -62,7 +59,6 @@ const MyFood = () => {
         }
     }, [email]);
 
-
     if (loading || dataLoading) {
         return (
             <div className="flex justify-center items-center h-screen">
@@ -72,7 +68,7 @@ const MyFood = () => {
     }
 
     return (
-        <div>
+        <div className="p-4 justify-center">
             {foods.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-screen space-y-6">
                     <p className="text-3xl uppercase font-bold text-center text-red-400">
@@ -87,72 +83,53 @@ const MyFood = () => {
                 </div>
             ) : (
                 <div>
-                    <h2 className="text-4xl font-bold text-center my-14">
+                    <h2 className="text-4xl font-bold text-center my-6">
                         Your Added Foods
                     </h2>
-                    <div className="overflow-x-auto">
-                        <table className="table w-full">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" className="checkbox" />
-                                        </label>
-                                    </th>
-                                    <th>Food</th>
-                                    <th>Quantity</th>
-                                    <th>Exp. Date</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foods.map((food) => {
-                                    const { _id, foodName, foodQuantity, expiredDateTime, foodImage } = food;
-                                    return (
-                                        <tr key={_id}>
-                                            <th>
-                                                <label>
-                                                    <input type="checkbox" className="checkbox" />
-                                                </label>
-                                            </th>
-                                            <td>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
-                                                        <div className="mask mask-squircle h-12 w-12">
-                                                            <img
-                                                                src={foodImage}
-                                                                alt={foodName}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div className="font-bold">{foodName}</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <span className="badge badge-ghost badge-sm">{foodQuantity}</span>
-                                            </td>
-                                            <td>{new Date(expiredDateTime).toLocaleDateString()}</td>
-                                            <th>
-                                                <button
-                                                    onClick={() => handleDelete(_id)}
-                                                    className="btn btn-ghost text-2xl text-red-500 hover:text-red-700"
-                                                >
-                                                    <MdDelete />
-                                                </button>
-                                                <Link
-                                                to={`/updateFood/${_id}`}
-                                                    className="btn btn-ghost text-2xl text-red-500 hover:text-red-700"
-                                                >
-                                                    <FaRegEdit />
-                                                </Link>
-                                            </th>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
+                    <div className="space-y-4">
+                        {foods.map((food) => {
+                            const { _id, foodName, foodQuantity, expiredDateTime, foodImage } = food;
+                            return (
+                                <div
+                                    key={_id}
+                                    className="flex flex-col sm:flex-row items-start sm:items-center bg-white p-4 rounded-lg shadow-md space-y-4 sm:space-y-0 sm:space-x-4"
+                                >
+                                    <div className="w-full sm:w-auto">
+                                        <img
+                                            src={foodImage}
+                                            alt={foodName}
+                                            className="h-24 w-24 object-cover rounded-md"
+                                        />
+                                    </div>
+                                    <div className="flex-1 space-y-2">
+                                        <p className="font-bold text-lg">{foodName}</p>
+                                        <p className="text-sm text-gray-600">
+                                            Quantity: <span className="font-medium">{foodQuantity}</span>
+                                        </p>
+                                        <p className="text-sm text-gray-600">
+                                            Exp. Date:{" "}
+                                            <span className="font-medium">
+                                                {new Date(expiredDateTime).toLocaleDateString()}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <div className="flex space-x-2">
+                                        <button
+                                            onClick={() => handleDelete(_id)}
+                                            className="btn btn-ghost text-red-500 hover:text-red-700 p-2 rounded-full"
+                                        >
+                                            <MdDelete size={20} />
+                                        </button>
+                                        <Link
+                                            to={`/updateFood/${_id}`}
+                                            className="btn btn-ghost text-blue-500 hover:text-blue-700 p-2 rounded-full"
+                                        >
+                                            <FaRegEdit size={20} />
+                                        </Link>
+                                    </div>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             )}

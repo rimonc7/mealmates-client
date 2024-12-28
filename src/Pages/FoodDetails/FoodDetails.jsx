@@ -96,7 +96,7 @@ const FoodDetails = () => {
                 onClick={() => document.getElementById("my_modal_1").showModal()}
                 className="btn btn-primary w-full mt-4 py-2 rounded-lg text-white font-semibold bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
-                Food Details
+                Update Food Details
             </button>
 
             {/* Modal Details */}

@@ -17,8 +17,8 @@ const FeaturedFood = () => {
 
     return (
         <div>
-            <h2 className="text-4xl font-bold text-center my-6">Featured Food Donations</h2>
-            <div className="grid grid-cols-3 gap-5 my-10">
+            <h2 className="text-4xl font-bold text-center my-6 mx-5">Featured Food Donations</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
                 {
                     foods.map(food => (
                         <FoodDonationCard key={food._id} food={food} />
