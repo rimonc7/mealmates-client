@@ -54,6 +54,8 @@ const FoodRequest = () => {
         const data = {
             status: e.target.value
         }
+        console.log(data)
+        
         fetch(`http://localhost:5000/foodRequest/${id}`, {
             method: 'PATCH',
             headers: {
@@ -63,7 +65,11 @@ const FoodRequest = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                Swal.fire({
+                    title: "Food Request Data Updated",
+                    icon: "success",
+                    draggable: true
+                });
             })
     }
     return (
@@ -108,9 +114,9 @@ const FoodRequest = () => {
                     </button>
                 </form>
 
-                {/* Render Food Requests */}
+
                 {foodReqData.length === 0 ? (
-                    <p>No food requests available.</p> // Add a message when there are no requests
+                    <p>No food requests available.</p>
                 ) : (
                     <div className="mt-10">
                         <h2 className="text-2xl font-semibold mb-4">Your Food Requests</h2>
@@ -130,7 +136,7 @@ const FoodRequest = () => {
                                             <td>{singleFoodReqData.req_date}</td>
                                             <td>
                                                 <select
-                                                    onChange={(e) => handleStatusUpdate(e,singleFoodReqData._id)}
+                                                    onChange={(e) => handleStatusUpdate(e, singleFoodReqData._id)}
                                                     defaultValue={singleFoodReqData.status || 'Change Status'}
                                                     className="select select-bordered"
                                                 >

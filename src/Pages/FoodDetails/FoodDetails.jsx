@@ -1,6 +1,8 @@
 import { useContext, useRef } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FoodDetails = () => {
     const { user } = useContext(AuthContext);
@@ -37,7 +39,9 @@ const FoodDetails = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                toast.success("Food Data Updated", {
+                    autoClose: 1000,
+                });
             });
     };
 
@@ -191,6 +195,7 @@ const FoodDetails = () => {
                     </div>
                 </div>
             </dialog>
+            <ToastContainer />
         </div>
     );
 };
