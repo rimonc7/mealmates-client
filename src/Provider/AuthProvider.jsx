@@ -21,9 +21,9 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-const loginWithGoogle =()=>{
-    return signInWithPopup(auth, googleProvider);
-}
+    const loginWithGoogle = () => {
+        return signInWithPopup(auth, googleProvider);
+    }
     const logOutUser = () => {
         return signOut(auth)
     }
@@ -32,10 +32,10 @@ const loginWithGoogle =()=>{
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
+                setLoading(false)
             } else {
                 setUser(null)
             }
-            setLoading(false)
         })
         return () => unsubscribe()
     }, [])
