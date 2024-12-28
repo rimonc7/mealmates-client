@@ -42,7 +42,6 @@ const FoodRequest = () => {
         fetch(`http://localhost:5000/foodReq?email=${user.email}`)
             .then(res => res.json())
             .then(data => {
-                console.log("Fetched Food Requests:", data); // Log fetched data to verify
                 setFoodReqData(data);
             })
             .catch(error => {
@@ -50,8 +49,23 @@ const FoodRequest = () => {
             });
     }, [user.email]);
 
-    console.log("Food Request Data:", foodReqData); // Log the state after setting
+    const handleStatusUpdate = (e, id) => {
 
+        const data = {
+            status: e.target.value
+        }
+        fetch(`http://localhost:5000/foodRequest/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
     return (
         <div>
             <div className="p-8 bg-gray-100 min-h-screen">
@@ -116,9 +130,11 @@ const FoodRequest = () => {
                                             <td>{singleFoodReqData.req_date}</td>
                                             <td>
                                                 <select
-                                                    value={singleFoodReqData.status}
+                                                    onChange={(e) => handleStatusUpdate(e,singleFoodReqData._id)}
+                                                    defaultValue={singleFoodReqData.status || 'Change Status'}
                                                     className="select select-bordered"
                                                 >
+                                                    <option disabled>Change Status</option>
                                                     <option value="Pending">Pending</option>
                                                     <option value="Accepted">Accepted</option>
                                                     <option value="Completed">Completed</option>
