@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const MyFood = () => {
     const { user, loading } = useContext(AuthContext);
@@ -10,20 +12,37 @@ const MyFood = () => {
     const [dataLoading, setDataLoading] = useState(true);
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/foods/${id}`, {
-            method: "DELETE",
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.deletedCount > 0) {
-                    const remaining = foods.filter((food) => food._id !== id);
-                    setFoods(remaining);
-                }
-            })
-            .catch((error) => {
-                console.error("Error deleting food:", error);
-            });
+        Swal.fire({
+            title: "Do you want to delete?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            denyButtonText: `Don't save`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/foods/${id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount > 0) {
+                            const remaining = foods.filter((food) => food._id !== id);
+                            setFoods(remaining);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error deleting food:", error);
+                    });
+
+                Swal.fire("Saved!", "", "success");
+            } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+
+
     };
+
 
     useEffect(() => {
         if (email) {
@@ -122,6 +141,12 @@ const MyFood = () => {
                                                 >
                                                     <MdDelete />
                                                 </button>
+                                                <Link
+                                                to={`/updateFood/${_id}`}
+                                                    className="btn btn-ghost text-2xl text-red-500 hover:text-red-700"
+                                                >
+                                                    <FaRegEdit />
+                                                </Link>
                                             </th>
                                         </tr>
                                     );
