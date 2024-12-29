@@ -2,11 +2,12 @@ import { MdSend } from "react-icons/md";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext, useEffect, useState } from "react";
+import useAxiosSecure from "../../hook/useAxiosSecure";
 
 const FoodRequest = () => {
     const { user } = useContext(AuthContext);
     const [foodReqData, setFoodReqData] = useState([]);
-
+    const axiosSecure = useAxiosSecure();
     const handleRequest = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -17,6 +18,7 @@ const FoodRequest = () => {
                 "content-type": "application/json",
             },
             body: JSON.stringify(foodReqData),
+            credentials: "include"
         })
             .then((res) => res.json())
             .then((data) => {
@@ -39,14 +41,20 @@ const FoodRequest = () => {
     };
 
     useEffect(() => {
-        fetch(`http://localhost:5000/foodReq?email=${user.email}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setFoodReqData(data);
-            })
-            .catch((error) => {
-                console.error("Error fetching food requests:", error);
-            });
+        // fetch(`http://localhost:5000/foodReq?email=${user.email}`,{
+        //     credentials: "include"
+        // })
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         setFoodReqData(data);
+        //     })
+        //     .catch((error) => {
+        //         console.error("Error fetching food requests:", error);
+        //     });
+
+        axiosSecure.get(`/foodReq?email=${user.email}`)
+            .then(res => setFoodReqData(res.data))
+
     }, [user.email]);
 
     const handleStatusUpdate = (e, id) => {

@@ -1,12 +1,17 @@
-import { useContext, useRef } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useAxiosSecure from "../../hook/useAxiosSecure";
 
 const FoodDetails = () => {
     const { user } = useContext(AuthContext);
-    const food = useLoaderData();
+    const [food, setFood] = useState([])
+    const { id } = useParams();
+    const formRef = useRef();
+    const axiosSecure = useAxiosSecure();
+
     const {
         _id,
         foodName,
@@ -21,7 +26,10 @@ const FoodDetails = () => {
         foodStatus,
     } = food;
 
-    const formRef = useRef();
+    useEffect(() => {
+        axiosSecure.get(`/foods/${id}`)
+            .then(res => setFood(res.data))
+    }, [])
 
     const handleUpdateFood = (e, id) => {
         e.preventDefault();

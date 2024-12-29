@@ -1,7 +1,12 @@
-import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hook/useAxiosSecure";
 
 const UpdateFood = () => {
+    const { id } = useParams();
+    const axiosSecure = useAxiosSecure();
+    const [food, setFood] = useState([]);
     const {
         _id,
         foodName,
@@ -14,7 +19,13 @@ const UpdateFood = () => {
         donatorName,
         donatorEmail,
         foodStatus
-    } = useLoaderData();
+    } = food;
+
+
+    useEffect(() => {
+        axiosSecure.get(`/foods/${id}`)
+            .then(res => setFood(res.data))
+    }, [])
 
 
     const handleUpdate = (e) => {

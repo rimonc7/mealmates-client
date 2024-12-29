@@ -50,12 +50,12 @@ const router = createBrowserRouter([
             {
                 path: '/food/:id',
                 element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
+                // loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
             },
             {
                 path: '/updateFood/:id',
                 element: <PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
+                // loader: ({ params }) => fetch(`http://localhost:5000/foods/${params.id}`)
             }
         ]
     },

@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hook/useAxiosSecure";
 
 const MyFood = () => {
     const { user, loading } = useContext(AuthContext);
     const email = user?.email;
     const [foods, setFoods] = useState([]);
     const [dataLoading, setDataLoading] = useState(true);
+    const axiosSecure = useAxiosSecure();
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -42,21 +44,27 @@ const MyFood = () => {
     };
 
     useEffect(() => {
-        if (email) {
-            setDataLoading(true);
-            fetch(`http://localhost:5000/foods?email=${email}`)
-                .then((res) => res.json())
-                .then((data) => {
-                    setFoods(data);
-                    setDataLoading(false);
-                })
-                .catch((error) => {
-                    console.error("Error fetching data:", error);
-                    setDataLoading(false);
-                });
-        } else {
-            setDataLoading(false);
-        }
+        // if (email) {
+        //     setDataLoading(true);
+        //     fetch(`http://localhost:5000/foods?email=${email}`)
+        //         .then((res) => res.json())
+        //         .then((data) => {
+        //             setFoods(data);
+        //             setDataLoading(false);
+        //         })
+        //         .catch((error) => {
+        //             console.error("Error fetching data:", error);
+        //             setDataLoading(false);
+        //         });
+        // } else {
+        //     setDataLoading(false);
+        // }
+        axiosSecure.get(`/foods?email=${email}`)
+            .then(res => {
+                setFoods(res.data);
+                setDataLoading(false);
+            })
+
     }, [email]);
 
     if (loading || dataLoading) {
