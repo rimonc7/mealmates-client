@@ -59,7 +59,7 @@ const NewsletterSubscription = () => {
                     />
                     <button
                         type="submit"
-                        className="btn bg-green-500 text-white hover:bg-green-600 flex items-center gap-2"
+                        className="btn text-white bg-blue-500 hover:bg-blue-600 flex items-center gap-2"
                     >
                         SUBMIT <FaPaperPlane />
                     </button>

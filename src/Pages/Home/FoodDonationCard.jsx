@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "motion/react"
 
 const FoodDonationCard = ({ food }) => {
   const {
@@ -16,8 +17,11 @@ const FoodDonationCard = ({ food }) => {
   } = food;
 
   return (
-    <div className="card card-bordered shadow-lg w-full max-w-xs mx-auto bg-white rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-in-out">
-      <figure className="relative">
+    <div
+      className="card card-bordered shadow-lg w-full max-w-xs mx-auto bg-white rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+      <motion.figure
+        whileHover={{ scale: 1.1 }}
+        className="relative">
         <img
           src={foodImage}
           alt={foodName}
@@ -26,7 +30,7 @@ const FoodDonationCard = ({ food }) => {
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white">
           <h3 className="text-lg font-semibold">{foodName}</h3>
         </div>
-      </figure>
+      </motion.figure>
 
       <div className="card-body p-4">
         <div className="flex justify-between items-center mb-2">

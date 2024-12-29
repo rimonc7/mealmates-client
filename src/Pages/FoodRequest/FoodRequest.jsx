@@ -135,7 +135,7 @@ const FoodRequest = () => {
                 </button>
             </form>
 
-            {foodReqData.length === 0 ? (
+            {foodReqData?.length === 0 ? (
                 <p className="text-center mt-10 text-gray-500">No food requests available.</p>
             ) : (
                 <div className="mt-10">
@@ -150,7 +150,7 @@ const FoodRequest = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {foodReqData.map((singleFoodReqData) => (
+                                {foodReqData?.map((singleFoodReqData) => (
                                     <tr
                                         key={singleFoodReqData._id}
                                         className="border-b last:border-none hover:bg-gray-50 text-sm"

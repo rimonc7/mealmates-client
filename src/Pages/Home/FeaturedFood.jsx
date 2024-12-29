@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import FoodDonationCard from "./FoodDonationCard";
+import { motion } from "motion/react"
+import { easeOut } from "motion";
 
 const FeaturedFood = () => {
     const [foods, setFoods] = useState([]);
@@ -17,7 +19,9 @@ const FeaturedFood = () => {
 
     return (
         <div>
-            <h2 className="text-4xl font-bold text-center my-6 mx-5">Featured Food Donations</h2>
+            <motion.h2
+                whileHover={{ scale: 1.1 }}
+                className="text-4xl font-bold text-center my-6 mx-5">Featured Food Donations</motion.h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 my-10">
                 {
                     foods.map(food => (
