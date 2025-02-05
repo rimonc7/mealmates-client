@@ -9,6 +9,10 @@ MealMates is a web application that simplifies food donation and management. It 
 https://mealmeats.web.app/
 ---
 
+## **Live Preview**
+![Live Preview](./src/assets/MealMates.jpg)
+
+
 ## **Key Features**
 1. **Authentication and Authorization:**
    - Firebase Authentication for user login (Email/Password and Google).
