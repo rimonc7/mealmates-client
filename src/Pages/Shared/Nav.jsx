@@ -9,22 +9,42 @@ const Nav = () => {
 
     const links =
         <>
-            <li>
-                <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/">Home</NavLink>
-            </li>
-            <li>
-                <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/availableFoods">Available Foods</NavLink>
-            </li>
-            <li>
-                <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/myFood">My Food</NavLink>
-            </li>
-            <li>
-                <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/foodRequest">Food Pickup</NavLink>
-            </li>
-            <li>
-                <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/addFood">Add Food</NavLink>
-            </li>
+            {
+                user ? <>
+                    <li>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/">Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/availableFoods">Available Foods</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/myFood">My Food</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/foodRequest">Food Pickup</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/addFood">Add Food</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/about">About</NavLink>
+                    </li>
+                </>
+                    :
+                    <>
+                        <li>
+                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/">Home</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/availableFoods">Available Foods</NavLink>
+                        </li>
+                        <li>
+                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/about">About</NavLink>
+                        </li>
+                    </>
+            }
         </>
+
 
     return (
         <div className="navbar bg-gradient-to-r from-[#FAF3E0] to-[#F1E4C3] shadow-md py-2 min-h-[55px] flex items-center lg:px-16">
