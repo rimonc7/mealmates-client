@@ -4,7 +4,7 @@ const About = () => {
     return (
         <div className="min-h-screen">
             <div className="relative w-full h-[300px] bg-cover bg-center flex items-center justify-center"
-                style={{ backgroundImage: "url('https://source.unsplash.com/1600x900/?food,community')" }}>
+                style={{ backgroundImage: "url('https://img.freepik.com/free-photo/person-being-donated-food_23-2148613181.jpg?t=st=1739293938~exp=1739297538~hmac=878c9165156f2714f1138281f7a2dcc5942719c8dc33f8ea0a6eeffe94b1ddcc&w=996')" }}>
                 <div className="bg-black bg-opacity-50 p-6 text-center rounded-lg">
                     <h1 className="text-4xl md:text-5xl font-bold text-white uppercase tracking-wider">About Meal Mates</h1>
                     <p className="text-lg text-gray-200 mt-2">Bridging the gap between surplus food and those in need.</p>
