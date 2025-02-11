@@ -1,7 +1,8 @@
 import { useContext } from "react";
-import { FaGoogle} from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { loginWithEmail, loginWithGoogle, errorMessage, setErrorMessage } = useContext(AuthContext);
@@ -40,6 +41,9 @@ const Login = () => {
 
     return (
         <div className="hero bg-base-200 min-h-screen flex flex-col items-center">
+            <Helmet>
+                <title>Login - MealMeats</title>
+            </Helmet>
             <h2 className="text-3xl my-4 font-bold">Login Now</h2>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
@@ -88,16 +92,16 @@ const Login = () => {
                         </button>
                     </div>
                     <div className="form-control mt-4">
-                            <p className=" my-4 text-sm text-center">
-                                Don't have an Account?{" "}
-                                 <Link to={'/register'} className="text-blue-500 link link-hover">Register Here</Link>
-                            </p>
-                            {errorMessage && (
-                                <div className="mt-4 text-center">
-                                    <p className="text-red-500">{errorMessage}</p>
-                                </div>
-                            )}
-                        </div>
+                        <p className=" my-4 text-sm text-center">
+                            Don't have an Account?{" "}
+                            <Link to={'/register'} className="text-blue-500 link link-hover">Register Here</Link>
+                        </p>
+                        {errorMessage && (
+                            <div className="mt-4 text-center">
+                                <p className="text-red-500">{errorMessage}</p>
+                            </div>
+                        )}
+                    </div>
 
                 </div>
             </div>

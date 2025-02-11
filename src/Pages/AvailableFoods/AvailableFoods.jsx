@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import FoodDonationCard from "../Home/FoodDonationCard";
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const AvailableFoods = () => {
     const foods = useLoaderData();
@@ -25,6 +26,9 @@ const AvailableFoods = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Available Foods - MealMeats</title>
+            </Helmet>
             <h2 className="text-4xl font-bold text-center my-10">Explore the Available Food Donations</h2>
             <div className="flex justify-center my-5">
                 <button

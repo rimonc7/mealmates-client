@@ -5,6 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hook/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const MyFood = () => {
     const { user, loading } = useContext(AuthContext);
@@ -77,6 +78,9 @@ const MyFood = () => {
 
     return (
         <div className="p-4 justify-center">
+            <Helmet>
+                <title>My Food - MealMeats</title>
+            </Helmet>
             {foods.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-screen space-y-6">
                     <p className="text-3xl uppercase font-bold text-center text-red-400">

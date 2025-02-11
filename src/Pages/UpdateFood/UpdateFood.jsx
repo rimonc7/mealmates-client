@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hook/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const UpdateFood = () => {
     const { id } = useParams();
@@ -63,6 +64,9 @@ const UpdateFood = () => {
 
     return (
         <div className="max-w-4xl mx-auto p-8">
+            <Helmet>
+                <title>Update Food - MealMeats</title>
+            </Helmet>
             <h1 className="text-3xl font-bold text-center mb-6">Update Food Information</h1>
 
             <form onSubmit={handleUpdate} className="space-y-6 bg-white p-6 rounded-lg shadow-lg">

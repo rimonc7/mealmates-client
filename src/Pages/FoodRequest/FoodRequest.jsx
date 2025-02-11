@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { useContext, useEffect, useState } from "react";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const FoodRequest = () => {
     const { user } = useContext(AuthContext);
@@ -96,6 +97,9 @@ const FoodRequest = () => {
 
     return (
         <div className="p-8 min-h-screen">
+            <Helmet>
+                <title>Food Request - MealMeats</title>
+            </Helmet>
             <h1 className="text-3xl font-bold text-center mb-6">Food Request Form</h1>
             <form onSubmit={handleRequest} className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg space-y-4">
                 <div>

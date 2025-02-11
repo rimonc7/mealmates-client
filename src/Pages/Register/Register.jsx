@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const { createUserWithEmail, setErrorMessage, errorMessage } = useContext(AuthContext)
@@ -42,6 +43,9 @@ const Register = () => {
     }
     return (
         <div className="hero bg-base-200 min-h-screen flex flex-col items-center">
+            <Helmet>
+                <title>Register - MealMeats</title>
+            </Helmet>
             <h2 className="text-3xl my-4 font-bold">Register Now</h2>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

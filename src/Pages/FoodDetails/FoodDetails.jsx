@@ -4,6 +4,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useAxiosSecure from "../../hook/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const FoodDetails = () => {
     const { user } = useContext(AuthContext);
@@ -55,6 +56,9 @@ const FoodDetails = () => {
 
     return (
         <div className="max-w-4xl mx-auto my-8 p-6 bg-base-100 shadow-xl rounded-lg">
+            <Helmet>
+                <title>Food Details - MealMeats</title>
+            </Helmet>
             <h2 className="text-4xl font-bold text-center mb-6">{foodName}</h2>
             <div className="flex flex-col lg:flex-row gap-6">
                 <div className="lg:w-1/2">
