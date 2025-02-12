@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion } from "motion/react"
+import { motion } from "framer-motion"; // Corrected import
 
 const FoodDonationCard = ({ food }) => {
   const {
@@ -17,11 +17,14 @@ const FoodDonationCard = ({ food }) => {
   } = food;
 
   return (
-    <div
-      className="card card-bordered shadow-lg w-full max-w-xs mx-auto bg-white rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 ease-in-out">
+    <motion.div
+      whileHover={{ scale: 1.02 }}
+      className="card card-bordered shadow-lg w-full max-w-xs mx-auto bg-white rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out"
+    >
       <motion.figure
-        whileHover={{ scale: 1.1 }}
-        className="relative">
+        whileHover={{ scale: 1.05 }}
+        className="relative"
+      >
         <img
           src={foodImage}
           alt={foodName}
@@ -35,41 +38,49 @@ const FoodDonationCard = ({ food }) => {
       <div className="card-body p-4">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-gray-500">
-            Expires: {new Date(expiredDateTime).toLocaleString()}
+            Expires: {expiredDateTime ? new Date(expiredDateTime).toLocaleDateString() : "N/A"}
           </span>
           <span
-            className={`font-semibold ${foodStatus === "available" ? "text-[#048c7c] border px-1 capitalize" : "text-red-500 border px-1 capitalize"}`}
+            className={`px-2 py-1 text-xs font-semibold rounded-lg ${foodStatus === "available"
+              ? "bg-green-100 text-green-600 border border-green-400"
+              : "bg-red-100 text-red-600 border border-red-400"
+              }`}
           >
             {foodStatus}
           </span>
         </div>
 
-        <p className="text-sm text-gray-600 mb-2">Additional Notes: {additionalNotes}</p>
+        {additionalNotes && (
+          <p className="text-sm text-gray-600 mb-2">
+            <strong>Notes:</strong> {additionalNotes}
+          </p>
+        )}
 
-        <div className="flex justify-between items-center mb-4">
-          <div className="flex items-center">
-            <img
-              src={donatorImage}
-              alt=''
-              className="w-10 h-10 rounded-full border-2 border-gray-300"
-            />
-            <div className="ml-2">
-              <p className="font-semibold text-sm">{donatorName}</p>
-              <p className="text-xs text-gray-500">{donatorEmail}</p>
-            </div>
+        <div className="flex items-center gap-3 mb-4">
+          <img
+            src={donatorImage}
+            alt={donatorName}
+            className="w-10 h-10 rounded-full border-2 border-gray-300"
+          />
+          <div>
+            <p className="font-semibold text-sm">{donatorName}</p>
+            <p className="text-xs text-gray-500">{donatorEmail}</p>
           </div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4 text-sm">
           <p className="font-semibold">Quantity: {foodQuantity}</p>
-          <p className="text-sm text-gray-500">Pickup Location: {pickupLocation}</p>
+          <p className="text-gray-500">📍 {pickupLocation}</p>
         </div>
 
-        <Link to={`/food/${_id}`} className="btn w-full mt-4 py-2 rounded-lg text-white font-semibold bg-[#048c7c] hover:bg-[#459e94] focus:outline-none focus:ring-2 focus:ring-blue-400">
-          Food Details
+        <Link
+          to={`/food/${_id}`}
+          className="block text-center w-full py-2 rounded-lg text-white font-semibold bg-[#048c7c] hover:bg-[#459e94] transition-all duration-200"
+        >
+          View Details
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
