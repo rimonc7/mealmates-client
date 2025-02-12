@@ -16,7 +16,7 @@ const FoodRequest = () => {
     const formData = new FormData(e.target);
     const foodReqData = Object.fromEntries(formData.entries());
 
-    fetch("http://localhost:5000/foodReq", {
+    fetch("https://meal-mates-server.vercel.app/foodReq", {
       method: "POST",
       headers: {
         "content-type": "application/json",

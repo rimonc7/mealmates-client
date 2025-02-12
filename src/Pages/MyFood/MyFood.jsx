@@ -26,7 +26,7 @@ const MyFood = () => {
             denyButtonText: `Don't save`
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/foods/${id}`, {
+                fetch(`https://meal-mates-server.vercel.app/foods/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
@@ -50,7 +50,7 @@ const MyFood = () => {
     useEffect(() => {
         // if (email) {
         //     setDataLoading(true);
-        //     fetch(`http://localhost:5000/foods?email=${email}`)
+        //     fetch(`https://meal-mates-server.vercel.app/foods?email=${email}`)
         //         .then((res) => res.json())
         //         .then((data) => {
         //             setFoods(data);

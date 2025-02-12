@@ -9,7 +9,7 @@ const FeaturedFood = () => {
     const { darkTheme } = useContext(ThemeContext); 
 
     useEffect(() => {
-        fetch("http://localhost:5000/foods?limit=6")
+        fetch("https://meal-mates-server.vercel.app/foods?limit=6")
             .then((res) => res.json())
             .then((data) => {
                 setFoods(data);

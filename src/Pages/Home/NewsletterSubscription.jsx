@@ -9,7 +9,7 @@ const NewsletterSubscription = () => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
-        fetch('http://localhost:5000/subscribers', {
+        fetch('https://meal-mates-server.vercel.app/subscribers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

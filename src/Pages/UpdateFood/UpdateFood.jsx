@@ -34,7 +34,7 @@ const UpdateFood = () => {
 
         const formData = new FormData(e.target);
         const foodData = Object.fromEntries(formData.entries());
-        fetch(`http://localhost:5000/updateFood/${_id}`, {
+        fetch(`https://meal-mates-server.vercel.app/updateFood/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

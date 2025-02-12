@@ -25,7 +25,7 @@ const FoodDetails = () => {
         const additionalNotes = formRef.current.additionalNotes.value;
         const data = { additionalNotes };
 
-        fetch(`http://localhost:5000/foods/${id}`, {
+        fetch(`https://meal-mates-server.vercel.app/foods/${id}`, {
             method: "PATCH",
             headers: { "content-type": "application/json" },
             body: JSON.stringify(data),

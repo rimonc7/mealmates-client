@@ -10,7 +10,7 @@ https://mealmeats.web.app/
 ---
 
 ## **Live Preview**
-![Live Preview](./src/assets/MealMates.jpg)
+![Live Preview](./src/assets/MealMates.png)
 
 
 ## **Key Features**
