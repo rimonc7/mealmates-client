@@ -1,13 +1,13 @@
-import { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 
-const Nav = () => {
+const MyFood = () => {
     const { user, loading } = useContext(AuthContext);
     const email = user?.email;
     const [foods, setFoods] = useState([]);
@@ -45,6 +45,21 @@ const Nav = () => {
     };
 
     useEffect(() => {
+        // if (email) {
+        //     setDataLoading(true);
+        //     fetch(`http://localhost:5000/foods?email=${email}`)
+        //         .then((res) => res.json())
+        //         .then((data) => {
+        //             setFoods(data);
+        //             setDataLoading(false);
+        //         })
+        //         .catch((error) => {
+        //             console.error("Error fetching data:", error);
+        //             setDataLoading(false);
+        //         });
+        // } else {
+        //     setDataLoading(false);
+        // }
         axiosSecure.get(`/foods?email=${email}`)
             .then(res => {
                 setFoods(res.data);
@@ -73,7 +88,7 @@ const Nav = () => {
                     </p>
                     <Link
                         to="/addFood"
-                        className="btn text-xl text-white font-semibold bg-[#048c7c] hover:bg-[#459e94]"
+                        className="btn text-xl text-white  font-semibold bg-[#048c7c] hover:bg-[#459e94]"
                     >
                         Add Food
                     </Link>

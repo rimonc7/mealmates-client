@@ -13,6 +13,7 @@ import FoodDetails from "../Pages/FoodDetails/FoodDetails";
 import FoodRequest from "../Pages/FoodRequest/FoodRequest";
 import UpdateFood from "../Pages/UpdateFood/UpdateFood";
 import About from "../Pages/About/About";
+import FoodDonation from "../Pages/FoodDonation/FoodDonation";
 
 const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
             {
                 path:'/about',
                 element:<About></About>
+            },
+            {
+                path:'/food-donation',
+                element:<FoodDonation></FoodDonation>
             }
         ]
     },
