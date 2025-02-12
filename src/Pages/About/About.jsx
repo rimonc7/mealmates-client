@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const About = () => {
+    const { user } = useContext(AuthContext)
+    console.log(user)
     return (
         <div className="min-h-screen">
             <div className="relative w-full h-[300px] bg-cover bg-center flex items-center justify-center"
@@ -14,7 +18,7 @@ const About = () => {
             <div className="container mx-auto px-6 md:px-12 py-12 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Our Mission</h2>
                 <p className="mt-4 text-lg text-gray-700 max-w-3xl mx-auto">
-                    At <span className="text-[#048c7c] font-semibold">Meal Mates</span>, we believe that no food should go to waste while people go hungry. 
+                    At <span className="text-[#048c7c] font-semibold">Meal Mates</span>, we believe that no food should go to waste while people go hungry.
                     Our platform connects food donors with individuals and communities who need it most.
                 </p>
             </div>
@@ -56,9 +60,18 @@ const About = () => {
             <div className="bg-[#06b5a2] py-12 text-center text-white">
                 <h2 className="text-3xl font-bold">Join the Movement</h2>
                 <p className="mt-4 text-lg">Become a donor or a recipient today. Together, we can make a difference.</p>
-                <div className="mt-6">
-                    <Link to="/register" className="bg-white text-[#048c7c] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-200 transition-all">Get Started</Link>
-                </div>
+                {!user && (
+                    <div className="mt-6">
+                        <Link
+                            to="/register"
+                            className="bg-white text-[#048c7c] px-6 py-3 rounded-lg text-lg font-semibold hover:bg-gray-200 transition-all"
+                        >
+                            Get Started
+                        </Link>
+                    </div>
+                )}
+
+
             </div>
         </div>
     );
