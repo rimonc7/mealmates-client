@@ -14,6 +14,9 @@ import FoodRequest from "../Pages/FoodRequest/FoodRequest";
 import UpdateFood from "../Pages/UpdateFood/UpdateFood";
 import About from "../Pages/About/About";
 import FoodDonation from "../Pages/FoodDonation/FoodDonation";
+import VolunteerOpportunities from "../Pages/VolunteerOpportunities/VolunteerOpportunities";
+import Contact from "../Pages/Contact/Contact";
+import Mission from "../Pages/Mission/Mission";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +69,18 @@ const router = createBrowserRouter([
             {
                 path:'/food-donation',
                 element:<FoodDonation></FoodDonation>
+            },
+            {
+                path:'/volunteer-opportunities',
+                element:<VolunteerOpportunities></VolunteerOpportunities>
+            },
+            {
+                path:'/contact',
+                element:<Contact></Contact>
+            },
+            {
+                path:'/mission',
+                element:<Mission></Mission>
             }
         ]
     },
