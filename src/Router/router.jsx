@@ -17,11 +17,13 @@ import FoodDonation from "../Pages/FoodDonation/FoodDonation";
 import VolunteerOpportunities from "../Pages/VolunteerOpportunities/VolunteerOpportunities";
 import Contact from "../Pages/Contact/Contact";
 import Mission from "../Pages/Mission/Mission";
+import NotFound from "../Pages/NotFound/NotFound";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayOut></MainLayOut>,
+        errorElement:<NotFound></NotFound>,
         children: [
             {
                 path: '/',

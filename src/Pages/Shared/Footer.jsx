@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 const Footer = () => {
+    const { darkTheme } = useContext(ThemeContext);
+
     return (
-        <footer className="bg-gradient-to-r from-[#FAF3E0] to-[#F1E4C3] text-gray-800 py-10 px-6 lg:px-20">
+        <footer className={`${darkTheme ? 'bg-gray-900 text-white' : 'bg-gradient-to-r from-[#FAF3E0] to-[#F1E4C3] text-gray-800'} py-10 px-6 lg:px-20`}>
             <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
                 <nav>
@@ -52,7 +56,7 @@ const Footer = () => {
             </div>
 
             {/* Bottom Section */}
-            <div className="border-t border-gray-300 mt-8 pt-4 text-center text-sm text-gray-600">
+            <div className={`${darkTheme ? 'text-white' : 'text-gray-600'}border-t border-gray-300 mt-8 pt-4 text-center text-sm `}>
                 © {new Date().getFullYear()} Meal Mates. All Rights Reserved.
             </div>
         </footer>

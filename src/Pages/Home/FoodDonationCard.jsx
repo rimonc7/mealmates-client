@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion"; // Corrected import
+import { motion } from "framer-motion";
+import { useContext } from "react";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 const FoodDonationCard = ({ food }) => {
+  const { darkTheme } = useContext(ThemeContext);
+
   const {
     _id,
     foodName,
@@ -19,12 +23,11 @@ const FoodDonationCard = ({ food }) => {
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
-      className="card card-bordered shadow-lg w-full max-w-xs mx-auto bg-white rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out"
+      className={`card card-bordered shadow-lg w-full max-w-xs mx-auto rounded-lg overflow-hidden hover:shadow-2xl transition-all duration-300 ease-in-out ${
+        darkTheme ? "bg-gray-800 text-white border-gray-700" : "bg-white text-gray-900"
+      }`}
     >
-      <motion.figure
-        whileHover={{ scale: 1.05 }}
-        className="relative"
-      >
+      <motion.figure whileHover={{ scale: 1.05 }} className="relative">
         <img
           src={foodImage}
           alt={foodName}
@@ -37,21 +40,22 @@ const FoodDonationCard = ({ food }) => {
 
       <div className="card-body p-4">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gray-500">
+          <span className={`text-sm ${darkTheme ? "text-gray-300" : "text-gray-500"}`}>
             Expires: {expiredDateTime ? new Date(expiredDateTime).toLocaleDateString() : "N/A"}
           </span>
           <span
-            className={`px-2 py-1 text-xs font-semibold rounded-lg ${foodStatus === "available"
-              ? "bg-green-100 text-green-600 border border-green-400"
-              : "bg-red-100 text-red-600 border border-red-400"
-              }`}
+            className={`px-2 py-1 text-xs font-semibold rounded-lg ${
+              foodStatus === "available"
+                ? "bg-green-100 text-green-600 border border-green-400"
+                : "bg-red-100 text-red-600 border border-red-400"
+            }`}
           >
             {foodStatus}
           </span>
         </div>
 
         {additionalNotes && (
-          <p className="text-sm text-gray-600 mb-2">
+          <p className={`text-sm mb-2 ${darkTheme ? "text-gray-300" : "text-gray-600"}`}>
             <strong>Notes:</strong> {additionalNotes}
           </p>
         )}
@@ -64,13 +68,15 @@ const FoodDonationCard = ({ food }) => {
           />
           <div>
             <p className="font-semibold text-sm">{donatorName}</p>
-            <p className="text-xs text-gray-500">{donatorEmail}</p>
+            <p className={`text-xs ${darkTheme ? "text-gray-400" : "text-gray-500"}`}>
+              {donatorEmail}
+            </p>
           </div>
         </div>
 
         <div className="mb-4 text-sm">
           <p className="font-semibold">Quantity: {foodQuantity}</p>
-          <p className="text-gray-500">📍 {pickupLocation}</p>
+          <p className={`${darkTheme ? "text-gray-300" : "text-gray-500"}`}>📍 {pickupLocation}</p>
         </div>
 
         <Link

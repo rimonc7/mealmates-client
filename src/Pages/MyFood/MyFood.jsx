@@ -6,6 +6,7 @@ import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 const MyFood = () => {
     const { user, loading } = useContext(AuthContext);
@@ -13,6 +14,8 @@ const MyFood = () => {
     const [foods, setFoods] = useState([]);
     const [dataLoading, setDataLoading] = useState(true);
     const axiosSecure = useAxiosSecure();
+    const { darkTheme } = useContext(ThemeContext);
+
 
     const handleDelete = (id) => {
         Swal.fire({
@@ -104,7 +107,7 @@ const MyFood = () => {
                             return (
                                 <div
                                     key={_id}
-                                    className="flex flex-col sm:flex-row items-start sm:items-center bg-white p-4 rounded-lg shadow-md space-y-4 sm:space-y-0 sm:space-x-4"
+                                    className={`flex flex-col sm:flex-row items-start sm:items-center p-4 rounded-lg shadow-md space-y-4 sm:space-y-0 sm:space-x-4 ${darkTheme ? "bg-gray-800 text-white border-gray-700" : "bg-white text-gray-900"}`}
                                 >
                                     <div className="w-full sm:w-auto">
                                         <img
@@ -115,10 +118,10 @@ const MyFood = () => {
                                     </div>
                                     <div className="flex-1 space-y-2">
                                         <p className="font-bold text-lg">{foodName}</p>
-                                        <p className="text-sm text-gray-600">
+                                        <p className={`text-sm ${darkTheme ? 'text-white' : 'text-gray-600'}`}>
                                             Quantity: <span className="font-medium">{foodQuantity}</span>
                                         </p>
-                                        <p className="text-sm text-gray-600">
+                                        <p className={`text-sm ${darkTheme ? 'text-white' : 'text-gray-600'}`}>
                                             Exp. Date:{" "}
                                             <span className="font-medium">
                                                 {new Date(expiredDateTime).toLocaleDateString()}

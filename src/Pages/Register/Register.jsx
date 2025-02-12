@@ -1,14 +1,17 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 import { updateProfile } from "firebase/auth";
 import { Helmet } from "react-helmet-async";
+import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
-    const { createUserWithEmail, setErrorMessage, errorMessage } = useContext(AuthContext)
+    const { createUserWithEmail, loginWithGoogle, setErrorMessage, errorMessage } = useContext(AuthContext);
+    const { darkTheme } = useContext(ThemeContext);
     const navigate = useNavigate();
 
-    const handleRegister = e => {
+    const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
@@ -16,83 +19,129 @@ const Register = () => {
         const photo = form.photo.value;
         const password = form.password.value;
 
-        setErrorMessage('')
+        setErrorMessage("");
 
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-
         if (!passwordRegex.test(password)) {
-            setErrorMessage("Password must be at least 6 characters long and contain at least one uppercase letter, one lowercase letter, and one special character.");
+            setErrorMessage("Password must be at least 6 characters long and contain at least one uppercase letter and one lowercase letter.");
             return;
         }
 
         createUserWithEmail(email, password)
-            .then(userCredential => {
+            .then((userCredential) => {
                 const user = userCredential.user;
-                return updateProfile(user, {
-                    displayName: name,
-                    photoURL: photo
-                })
+                return updateProfile(user, { displayName: name, photoURL: photo });
             })
             .then(() => {
-                form.reset()
-                navigate('/')
+                form.reset();
+                navigate("/");
             })
-            .catch(error => {
-                setErrorMessage(error.message)
-            })
-    }
+            .catch((error) => setErrorMessage(error.message));
+    };
+
+    const handleGoogleLogin = () => {
+        setErrorMessage("");
+        loginWithGoogle()
+            .then(() => navigate("/"))
+            .catch((error) => setErrorMessage(error.message));
+    };
+
     return (
-        <div className="hero bg-base-200 min-h-screen flex flex-col items-center">
+        <div className={`py-16 min-h-screen flex flex-col items-center justify-center transition-all duration-300 
+            ${darkTheme ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-800"}`}>
+            
             <Helmet>
                 <title>Register - MealMeats</title>
             </Helmet>
-            <h2 className="text-3xl my-4 font-bold">Register Now</h2>
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <form onSubmit={handleRegister} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input name="name" type="text" placeholder="name" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input name="email" type="email" placeholder="email" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Photo</span>
-                            </label>
-                            <input name="photo" type="url" placeholder="photo url" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input name="password" type="password" placeholder="password" className="input input-bordered" required />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
-                        </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">Register Now</button>
-                        </div>
-                        <div className="form-control mt-4">
-                            <p className="my-4 text-sm text-center">
-                                Already have an account?{" "}
-                                <Link to={'/login'} className="text-blue-500 link link-hover">Log in here</Link>
-                            </p>
-                            {errorMessage && (
-                                <div className="mt-4 text-center">
-                                    <p className="text-red-500">{errorMessage}</p>
-                                </div>
-                            )}
-                        </div>
-                    </form>
-                </div>
+
+            <div className={`w-full max-w-md p-8 rounded-lg shadow-xl transition-all duration-300 
+                ${darkTheme ? "bg-gray-700 border border-gray-600" : "bg-white border border-gray-300"}`}>
+
+                <h2 className="text-3xl font-bold text-center mb-6">Register</h2>
+
+                {/* Registration Form */}
+                <form onSubmit={handleRegister} className="space-y-4">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className={`${darkTheme ? "text-white" : "text-gray-700"}`}>Name</span>
+                        </label>
+                        <input
+                            name="name"
+                            type="text"
+                            placeholder="Enter your name"
+                            className={`input input-bordered w-full transition-all duration-200 
+                                ${darkTheme ? "bg-gray-700 text-white border-gray-300" : "bg-white text-gray-900 border-gray-300"}`}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className={`${darkTheme ? "text-white" : "text-gray-700"}`}>Email</span>
+                        </label>
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            className={`input input-bordered w-full transition-all duration-200 
+                                ${darkTheme ? "bg-gray-700 text-white border-gray-300" : "bg-white text-gray-900 border-gray-300"}`}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className={`${darkTheme ? "text-white" : "text-gray-700"}`}>Photo URL</span>
+                        </label>
+                        <input
+                            name="photo"
+                            type="url"
+                            placeholder="Enter profile photo URL"
+                            className={`input input-bordered w-full transition-all duration-200 
+                                ${darkTheme ? "bg-gray-700 text-white border-gray-300" : "bg-white text-gray-900 border-gray-300"}`}
+                            required
+                        />
+                    </div>
+
+                    <div className="form-control">
+                        <label className="label">
+                            <span className={`${darkTheme ? "text-white" : "text-gray-700"}`}>Password</span>
+                        </label>
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            className={`input input-bordered w-full transition-all duration-200 
+                                ${darkTheme ? "bg-gray-700 text-white border-gray-300" : "bg-white text-gray-900 border-gray-300"}`}
+                            required
+                        />
+                    </div>
+
+                    <button className="btn bg-[#048c7c] hover:bg-[#459e94] text-white w-full transition-all duration-200">
+                        Register Now
+                    </button>
+                </form>
+
+                <div className="divider my-6">OR</div>
+
+                {/* Social Login */}
+                <button
+                    onClick={handleGoogleLogin}
+                    className="btn btn-outline btn-secondary w-full flex items-center gap-2 transition-all duration-200"
+                >
+                    <FaGoogle /> Continue with Google
+                </button>
+
+                {/* Error Message */}
+                {errorMessage && (
+                    <p className="text-red-500 text-center mt-4">{errorMessage}</p>
+                )}
+
+                {/* Login Link */}
+                <p className="text-center text-sm mt-4">
+                    Already have an account?{" "}
+                    <Link to="/login" className="text-blue-500 hover:underline">Log in here</Link>
+                </p>
             </div>
         </div>
     );

@@ -1,25 +1,27 @@
 import { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { loginWithEmail, loginWithGoogle, errorMessage, setErrorMessage } = useContext(AuthContext);
+    const { darkTheme } = useContext(ThemeContext);
 
     const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from || '/';
-    console.log(from)
+    const from = location.state?.from || "/";
 
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        setErrorMessage('');
+        setErrorMessage("");
+
         loginWithEmail(email, password)
-            .then((userCredential) => {
+            .then(() => {
                 form.reset();
                 navigate(from);
             })
@@ -29,9 +31,9 @@ const Login = () => {
     };
 
     const handleGoogleLogin = () => {
-        setErrorMessage('');
+        setErrorMessage("");
         loginWithGoogle()
-            .then((userCredential) => {
+            .then(() => {
                 navigate(from);
             })
             .catch((error) => {
@@ -40,70 +42,74 @@ const Login = () => {
     };
 
     return (
-        <div className="hero bg-base-200 min-h-screen flex flex-col items-center">
+        <div className={`min-h-screen flex flex-col items-center justify-center transition-all duration-300 
+            ${darkTheme ? "bg-gray-800 text-white" : "bg-gray-100 text-gray-800"}`}>
+            
             <Helmet>
                 <title>Login - MealMeats</title>
             </Helmet>
-            <h2 className="text-3xl my-4 font-bold">Login Now</h2>
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <form onSubmit={handleLogin} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input
-                                name="email"
-                                type="email"
-                                placeholder="email"
-                                className="input input-bordered"
-                                required
-                            />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input
-                                name="password"
-                                type="password"
-                                placeholder="password"
-                                className="input input-bordered"
-                                required
-                            />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">
-                                    Forgot password?
-                                </a>
-                            </label>
-                        </div>
-                        <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
-                        </div>
-                    </form>
-                    <div className="divider">OR</div>
-                    <div className="form-control px-6 pb-6">
-                        {/* Social Login Buttons */}
-                        <button
-                            onClick={handleGoogleLogin}
-                            className="btn btn-outline btn-secondary flex items-center gap-2 mb-2"
-                        >
-                            <FaGoogle /> Continue with Google
-                        </button>
-                    </div>
-                    <div className="form-control mt-4">
-                        <p className=" my-4 text-sm text-center">
-                            Don't have an Account?{" "}
-                            <Link to={'/register'} className="text-blue-500 link link-hover">Register Here</Link>
-                        </p>
-                        {errorMessage && (
-                            <div className="mt-4 text-center">
-                                <p className="text-red-500">{errorMessage}</p>
-                            </div>
-                        )}
+
+            <div className={`w-full max-w-md p-8 rounded-lg shadow-xl transition-all duration-300 
+                ${darkTheme ? "bg-gray-700 border border-gray-700" : "bg-white border border-gray-300"}`}>
+
+                <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
+
+                <form onSubmit={handleLogin} className="space-y-4">
+                    <div className="form-control">
+                        <label className="label">
+                            <span className={`${darkTheme ? "text-white" : "text-gray-700"}`}>Email</span>
+                        </label>
+                        <input
+                            name="email"
+                            type="email"
+                            placeholder="Enter your email"
+                            className={`input input-bordered w-full transition-all duration-200  
+                                ${darkTheme ? "bg-gray-700 text-white border-gray-300" : "bg-white text-gray-900 border-gray-300"}`}
+                            required
+                        />
                     </div>
 
-                </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className={`${darkTheme ? "text-white" : "text-gray-700"}`}>Password</span>
+                        </label>
+                        <input
+                            name="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            className={`input input-bordered w-full transition-all duration-200 
+                                ${darkTheme ? "bg-gray-700 text-white border-gray-300" : "bg-white text-gray-900 border-gray-300"}`}
+                            required
+                        />
+                        <label className="label">
+                            <a href="#" className="text-sm text-blue-500 hover:underline">Forgot password?</a>
+                        </label>
+                    </div>
+
+                    <button className="btn bg-[#048c7c] hover:bg-[#459e94] text-white w-full transition-all duration-200">
+                        Login
+                    </button>
+                </form>
+
+                <div className="divider my-6">OR</div>
+
+                {/* Social Login */}
+                <button
+                    onClick={handleGoogleLogin}
+                    className="btn btn-outline btn-secondary w-full flex items-center gap-2 transition-all duration-200"
+                >
+                    <FaGoogle /> Continue with Google
+                </button>
+
+                {/* Error Message */}
+                {errorMessage && (
+                    <p className="text-red-500 text-center mt-4">{errorMessage}</p>
+                )}
+
+                <p className="text-center text-sm mt-4">
+                    Don't have an account?{" "}
+                    <Link to="/register" className="text-blue-500 hover:underline">Register here</Link>
+                </p>
             </div>
         </div>
     );

@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
+  const { darkTheme } = useContext(ThemeContext);  
 
   const handleAddFood = (e) => {
     e.preventDefault();
@@ -38,143 +40,132 @@ const AddFood = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gray-50 py-12">
+    <div className={`min-h-screen flex flex-col items-center py-10 transition-all duration-300 ${darkTheme ? "bg-gray-800 text-white" : "bg-gray-50 text-gray-800"}`}>
       <Helmet>
         <title>Add Food - MealMeats</title>
       </Helmet>
       
-      <h2 className="text-4xl font-bold text-gray-800 mb-8">Add Food</h2>
+      <h2 className={`text-4xl font-bold mb-8 ${darkTheme ? "text-white" : "text-gray-800"}`}>Add Food</h2>
       
-      <div className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8">
+      <div className={`w-full max-w-4xl rounded-lg shadow-lg p-8 ${darkTheme ? "bg-gray-700" : "bg-white"}`}>
         <form onSubmit={handleAddFood} className="space-y-6">
-          {/* Food Name */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Food Name</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-700"}`}>Food Name</label>
             <input
               name="foodName"
               type="text"
               placeholder="Enter food name"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Food Image */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Food Image</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-700"}`}>Food Image</label>
             <input
               name="foodImage"
               type="url"
               placeholder="Enter food image URL"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Food Quantity */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Food Quantity</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-700"}`}>Food Quantity</label>
             <input
               name="foodQuantity"
               type="number"
               placeholder="Enter food quantity"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Pickup Location */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Pickup Location</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-700"}`}>Pickup Location</label>
             <input
               name="pickupLocation"
               type="text"
               placeholder="Enter pickup location"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Expired Date/Time */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Expired Date/Time</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-700"}`}>Expired Date/Time</label>
             <input
               name="expiredDateTime"
               type="datetime-local"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Additional Notes */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Additional Notes</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-700"}`}>Additional Notes</label>
             <textarea
               name="additionalNotes"
               placeholder="Enter any additional notes"
-              className="textarea textarea-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`textarea textarea-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
             ></textarea>
           </div>
 
-          <h3 className="text-xl font-semibold mt-6 text-gray-800">Donator Information</h3>
+          <h3 className={`text-xl font-semibold mt-6 ${darkTheme ? "text-white" : "text-gray-800"}`}>Donator Information</h3>
 
-          {/* Donator Image */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Donator Image</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-700"}`}>Donator Image</label>
             <input
               readOnly
               defaultValue={user.photoURL}
               name="donatorImage"
               type="url"
               placeholder="Enter donator image URL"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full  border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Donator Name */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Donator Name</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-600"}`}>Donator Name</label>
             <input
               readOnly
               defaultValue={user.displayName}
               name="donatorName"
               type="text"
               placeholder="Enter donator name"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Donator Email */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Donator Email</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-600"}`}>Donator Email</label>
             <input
               readOnly
               defaultValue={user.email}
               name="donatorEmail"
               type="email"
               placeholder="Enter donator email"
-              className="input input-bordered w-full focus:outline-none focus:ring-2 focus:ring-[#048c7c]"
+              className={`input input-bordered w-full border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#048c7c] ${darkTheme ? "bg-gray-600 text-white" : "bg-white"}`}
               required
             />
           </div>
 
-          {/* Food Status */}
           <div className="form-control w-full">
-            <label className="label text-gray-700 font-semibold">Food Status</label>
+            <label className={`label font-semibold ${darkTheme ? "text-white" : "text-gray-600"}`}>Food Status</label>
             <input
               name="foodStatus"
               type="text"
               value="available"
               readOnly
-              className="input input-bordered w-full bg-gray-100 focus:outline-none"
+              className={`input input-bordered w-full border-gray-300 bg-gray-100 focus:outline-none ${darkTheme ? "bg-gray-600 text-white" : "bg-gray-100"}`}
             />
           </div>
 
-          {/* Submit Button */}
           <div className="form-control mt-6">
-            <button className="btn bg-[#048c7c] hover:bg-[#459e94] w-full py-3 text-lg text-white font-semibold">Add Food</button>
+            <button className={`btn w-full py-3 text-lg text-white font-semibold ${darkTheme ? "bg-[#048c7c] hover:bg-[#459e94]" : "bg-[#048c7c] hover:bg-[#459e94]"}`}>Add Food</button>
           </div>
         </form>
       </div>

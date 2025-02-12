@@ -1,6 +1,10 @@
 import { FaHandsHelping, FaHeart, FaGlobe, FaUtensils, FaSeedling, FaHandHoldingHeart } from "react-icons/fa";
+import { useContext } from "react";
+import { ThemeContext } from "../../Provider/ThemeProvider";
 
 const Partners = () => {
+  const { darkTheme } = useContext(ThemeContext); 
+
   const partners = [
     { name: "UNICEF", icon: <FaHandsHelping className="text-blue-500" /> },
     { name: "Red Cross", icon: <FaHeart className="text-red-500" /> },
@@ -11,10 +15,10 @@ const Partners = () => {
   ];
 
   return (
-    <section className="py-16 bg-white text-gray-800">
+    <section className={`py-16 ${darkTheme ? "bg-gray-900 text-white" : "bg-white text-gray-800"}`}>
       <div className="container mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Partners & Sponsors</h2>
-        <p className="text-lg text-gray-600 mb-10">
+        <p className={`text-lg ${darkTheme ? "text-gray-300" : "text-gray-600"} mb-10`}>
           We collaborate with global organizations to fight hunger and support food security.
         </p>
 
