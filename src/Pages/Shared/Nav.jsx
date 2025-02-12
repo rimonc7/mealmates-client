@@ -12,34 +12,34 @@ const Nav = () => {
             {
                 user ? <>
                     <li>
-                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/">Home</NavLink>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/">Home</NavLink>
                     </li>
                     <li>
-                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/availableFoods">Available Foods</NavLink>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/availableFoods">Available Foods</NavLink>
                     </li>
                     <li>
-                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/myFood">My Food</NavLink>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/myFood">My Food</NavLink>
                     </li>
                     <li>
-                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/foodRequest">Food Pickup</NavLink>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/foodRequest">Food Pickup</NavLink>
                     </li>
                     <li>
-                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/addFood">Add Food</NavLink>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/addFood">Add Food</NavLink>
                     </li>
                     <li>
-                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/about">About</NavLink>
+                        <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/about">About</NavLink>
                     </li>
                 </>
                     :
                     <>
                         <li>
-                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/">Home</NavLink>
+                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/">Home</NavLink>
                         </li>
                         <li>
-                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/availableFoods">Available Foods</NavLink>
+                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/availableFoods">Available Foods</NavLink>
                         </li>
                         <li>
-                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#06b5a2] hover:text-white rounded-md" to="/about">About</NavLink>
+                            <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/about">About</NavLink>
                         </li>
                     </>
             }
@@ -52,7 +52,7 @@ const Nav = () => {
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg"
-                            className="h-5 w-5 text-[#06b5a2]"
+                            className="h-5 w-5 text-[#048c7c]"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor">
@@ -72,7 +72,7 @@ const Nav = () => {
                     <h1 className="text-[1.5rem] md:text-[1.7rem] font-bold tracking-wide text-gray-800">
                         M E A L
                     </h1>
-                    <h2 className="text-[1rem] md:text-[1.2rem] font-semibold tracking-[0.4em] text-[#06b5a2]">
+                    <h2 className="text-[1rem] md:text-[1.2rem] font-semibold tracking-[0.4em] text-[#048c7c]">
                         MATES
                     </h2>
                 </Link>
@@ -85,7 +85,7 @@ const Nav = () => {
             <div className="navbar-end space-x-2">
                 {user ? (
                     <div className="flex items-center space-x-2">
-                        <img src={user?.photoURL || "https://i.ibb.co/4pDNDk1/user-placeholder.png"} alt="User" className="w-8 h-8 rounded-full border border-[#06b5a2]" />
+                        <img src={user?.photoURL || "https://i.ibb.co/4pDNDk1/user-placeholder.png"} alt="User" className="w-10 h-10 rounded-full border-2 border-[#048c7c]" />
                         <button onClick={logOutUser} className="btn bg-[#048c7c] hover:bg-[#459e94] text-white px-3 py-1 rounded-md transition-all duration-300 ease-in-out">
                             Logout
                         </button>

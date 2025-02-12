@@ -38,7 +38,7 @@ const FoodDonationCard = ({ food }) => {
             Expires: {new Date(expiredDateTime).toLocaleString()}
           </span>
           <span
-            className={`font-semibold ${foodStatus === "available" ? "text-green-500" : "text-red-500"}`}
+            className={`font-semibold ${foodStatus === "available" ? "text-[#048c7c] border px-1 capitalize" : "text-red-500 border px-1 capitalize"}`}
           >
             {foodStatus}
           </span>
@@ -50,7 +50,7 @@ const FoodDonationCard = ({ food }) => {
           <div className="flex items-center">
             <img
               src={donatorImage}
-              alt={donatorName}
+              alt=''
               className="w-10 h-10 rounded-full border-2 border-gray-300"
             />
             <div className="ml-2">
@@ -65,7 +65,7 @@ const FoodDonationCard = ({ food }) => {
           <p className="text-sm text-gray-500">Pickup Location: {pickupLocation}</p>
         </div>
 
-        <Link to={`/food/${_id}`} className="btn btn-primary w-full mt-4 py-2 rounded-lg text-white font-semibold bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <Link to={`/food/${_id}`} className="btn w-full mt-4 py-2 rounded-lg text-white font-semibold bg-[#048c7c] hover:bg-[#459e94] focus:outline-none focus:ring-2 focus:ring-blue-400">
           Food Details
         </Link>
       </div>

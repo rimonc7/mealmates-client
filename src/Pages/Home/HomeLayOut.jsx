@@ -4,6 +4,7 @@ import Testimonial from './Testimonial';
 import NewsletterSubscription from './NewsletterSubscription';
 import FeaturedFood from './FeaturedFood';
 import { Helmet } from 'react-helmet-async';
+import Partners from './Partners';
 
 const HomeLayOut = () => {
     return (
@@ -14,6 +15,7 @@ const HomeLayOut = () => {
             <Banner></Banner>
             <FeaturedFood></FeaturedFood>
             <Testimonial></Testimonial>
+            <Partners></Partners>
             <NewsletterSubscription></NewsletterSubscription>
         </div>
     );
