@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hook/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
 
-const MyFood = () => {
+const Nav = () => {
     const { user, loading } = useContext(AuthContext);
     const email = user?.email;
     const [foods, setFoods] = useState([]);
@@ -45,21 +45,6 @@ const MyFood = () => {
     };
 
     useEffect(() => {
-        // if (email) {
-        //     setDataLoading(true);
-        //     fetch(`http://localhost:5000/foods?email=${email}`)
-        //         .then((res) => res.json())
-        //         .then((data) => {
-        //             setFoods(data);
-        //             setDataLoading(false);
-        //         })
-        //         .catch((error) => {
-        //             console.error("Error fetching data:", error);
-        //             setDataLoading(false);
-        //         });
-        // } else {
-        //     setDataLoading(false);
-        // }
         axiosSecure.get(`/foods?email=${email}`)
             .then(res => {
                 setFoods(res.data);
@@ -77,7 +62,7 @@ const MyFood = () => {
     }
 
     return (
-        <div className="p-4 justify-center">
+        <div className="p-4 justify-center mx-16">
             <Helmet>
                 <title>My Food - MealMeats</title>
             </Helmet>
@@ -88,7 +73,7 @@ const MyFood = () => {
                     </p>
                     <Link
                         to="/addFood"
-                        className="btn text-xl text-white bg-blue-500 font-semibold hover:bg-blue-700"
+                        className="btn text-xl text-white font-semibold bg-[#048c7c] hover:bg-[#459e94]"
                     >
                         Add Food
                     </Link>
@@ -128,13 +113,13 @@ const MyFood = () => {
                                     <div className="flex space-x-2">
                                         <button
                                             onClick={() => handleDelete(_id)}
-                                            className="btn btn-ghost text-red-500 hover:text-red-700 p-2 rounded-full"
+                                            className=" text-red-500 hover:text-red-700 p-2 rounded-full"
                                         >
                                             <MdDelete size={20} />
                                         </button>
                                         <Link
                                             to={`/updateFood/${_id}`}
-                                            className="btn btn-ghost text-blue-500 hover:text-blue-700 p-2 rounded-full"
+                                            className=" text-blue-500 hover:text-blue-700 p-2 rounded-full"
                                         >
                                             <FaRegEdit size={20} />
                                         </Link>
