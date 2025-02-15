@@ -27,11 +27,16 @@ const Nav = () => {
                     <li>
                         <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/addFood">Add Food</NavLink>
                     </li>
+
                 </>
             )}
             <li>
                 <NavLink className="nav-link px-3 py-1 transition-all duration-300 ease-in-out hover:bg-[#048c7c] hover:text-white rounded-md" to="/about">About</NavLink>
             </li>
+            <>
+                <Link to="/register" className=" flex lg:hidden btn bg-[#048c7c] hover:bg-[#459e94] text-white px-3 py-1 mb-1 rounded-md transition-all duration-300">Register</Link>
+                <Link to='/login' className=" flex lg:hidden btn bg-[#048c7c] hover:bg-[#459e94] text-white px-3 py-1 rounded-md transition-all duration-300">Sign In</Link>
+            </>
         </>
     );
 
@@ -85,8 +90,8 @@ const Nav = () => {
                     </div>
                 ) : (
                     <>
-                        <Link to="/register" className="btn bg-[#048c7c] hover:bg-[#459e94] text-white px-3 py-1 rounded-md transition-all duration-300">Register</Link>
-                        <Link to='/login' className="btn bg-[#048c7c] hover:bg-[#459e94] text-white px-3 py-1 rounded-md transition-all duration-300">Sign In</Link>
+                        <Link to="/register" className=" hidden lg:flex btn bg-[#048c7c] hover:bg-[#459e94] text-white px-3 py-1 rounded-md transition-all duration-300">Register</Link>
+                        <Link to='/login' className=" hidden lg:flex btn bg-[#048c7c] hover:bg-[#459e94] text-white px-3 py-1 rounded-md transition-all duration-300">Sign In</Link>
                     </>
                 )}
                 <button

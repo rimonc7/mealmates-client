@@ -86,7 +86,7 @@ const FoodDetails = () => {
                     <h3 className="font-bold text-lg">Request Food Details</h3>
                     <form ref={formRef} className="card-body">
                         <div className="mb-4">
-                            <h4 className="font-semibold text-gray-600 mb-2">Food Information (Not Editable)</h4>
+                            <h4 className={`font-semibold ${darkTheme ? "text-white" : " text-gray-600"} mb-2`}>Food Information (Not Editable)</h4>
 
                             {[ 
                                 { label: "Food Name", value: food.foodName },
@@ -96,7 +96,7 @@ const FoodDetails = () => {
                                 { label: "Food Donator Name", value: user?.displayName }
                             ].map((item, index) => (
                                 <div key={index} className="form-control">
-                                    <label className="label"><span className="label-text">{item.label}</span></label>
+                                    <label className="label"><span className={`label-text ${darkTheme ? "text-white" : " text-gray-600"} `}>{item.label}</span></label>
                                     <input
                                         type="text"
                                         className="input input-bordered bg-gray-100 text-gray-500 cursor-not-allowed"
@@ -108,11 +108,11 @@ const FoodDetails = () => {
                         </div>
 
                         <div>
-                            <h4 className="font-semibold text-gray-600 mb-2">Editable Fields</h4>
+                            <h4 className={`font-semibold ${darkTheme ? "text-white" : " text-gray-600"} mb-2`}>Editable Fields</h4>
                             <div className="form-control">
-                                <label className="label"><span className="label-text">Additional Notes</span></label>
+                                <label className="label"><span className={`label-text ${darkTheme ? "text-white" : " text-gray-600"}`}>Additional Notes</span></label>
                                 <textarea
-                                    className="textarea textarea-bordered"
+                                    className="textarea textarea-bordered text-black"
                                     placeholder="Add any additional notes here"
                                     defaultValue={food.additionalNotes}
                                     name="additionalNotes"
